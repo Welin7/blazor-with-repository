@@ -1,0 +1,18 @@
+﻿@page "/events"
+@inject IEventRepository repository;
+
+<PageTitle>Events</PageTitle>
+
+<EventsListTemplate ListEvents = "ListEvents" ></EventsListTemplate>
+
+@code {
+    public List<Event> ListEvents = new();
+
+    protected override Task OnInitializedAsync()
+    {
+        ListEvents = repository.GetAll();
+
+        return base.OnInitializedAsync();
+    }
+}
+

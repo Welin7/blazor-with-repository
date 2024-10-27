@@ -1,0 +1,44 @@
+﻿@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+
+<h1>Events</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date Initial</th>
+            <th>Date Final</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ListEvents)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.DateInitial.ToString("d")</td>
+                <td>@item.DateFinal.ToString("d")</td>
+                <td>@item.isActive.ToString()</td>
+                <td>
+                    <button class="btn btn-outline-info" onclick="@(() => NavigateToDetailsPage(item.Id))" >Details</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    [Parameter]
+    public List<Event> ListEvents { get; set; } = new();
+
+    private void NavigateToDetailsPage(int id)
+    {
+        navigationManager.NavigateTo($"/details/{id}");
+    }
+}

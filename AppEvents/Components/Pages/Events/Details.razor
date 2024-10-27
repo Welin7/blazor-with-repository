@@ -1,0 +1,8 @@
+﻿@page "/details/{id:int}"
+
+<h1>Details of Event: ID:@Id</h1>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}
